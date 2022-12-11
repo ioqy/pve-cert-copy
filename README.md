@@ -1,4 +1,4 @@
-# A systemd timer to automatically copy the SSL certificate from Proxmox Virtual Environment to Proxmox Backup Server
+# A systemd timer to automatically copy the SSL certificate from Proxmox Virtual Environment to Proxmox Backup Server installed on the same machine
 
 
 ## Install
