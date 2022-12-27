@@ -26,7 +26,7 @@ cat << EOF > /etc/systemd/system/pve-cert-copy.service
 Description=Copy PVE certificate for proxmox backup server
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/copy-pve-cert.sh
+ExecStart=/usr/local/bin/pve-cert-copy.sh
 EOF
 
 cat << EOF > /etc/systemd/system/pve-cert-copy.timer
