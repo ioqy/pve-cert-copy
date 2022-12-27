@@ -5,8 +5,6 @@ if [ "$(whoami)" != "root" ]; then
   exit 1
 fi
 
-systemctl disable --now pve-cert-copy.timer 2>/dev/null
-
 cat << EOF > /usr/local/bin/pve-cert-copy.sh
 #!/bin/sh
 if [ "\$(whoami)" != "root" ]; then
@@ -24,20 +22,12 @@ EOF
 cat << EOF > /etc/systemd/system/pve-cert-copy.service
 [Unit]
 Description=Copy PVE certificate for proxmox backup server
+After=pve-daily-update.service
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/pve-cert-copy.sh
-EOF
-
-cat << EOF > /etc/systemd/system/pve-cert-copy.timer
-[Unit]
-Description=Copy PVE certificate for proxmox backup server
-[Timer]
-OnCalendar=*-*-* 04:00:00
-RandomizedDelaySec=1h
-Persistent=true
 [Install]
-WantedBy=timers.target
+WantedBy=pve-daily-update.service
 EOF
 
 cat << EOF > /usr/local/bin/uninstall-pve-cert-copy.sh
@@ -46,10 +36,10 @@ if [ "\$(whoami)" != "root" ]; then
   echo Script must be run as root
   exit 1
 fi
-systemctl disable --now pve-cert-copy.timer 2>/dev/null
+systemctl disable pve-cert-copy.service
 rm /etc/systemd/system/pve-cert-copy.service
-rm /etc/systemd/system/pve-cert-copy.timer
 systemctl daemon-reload 2>/dev/null
+rm /usr/local/bin/pve-cert-copy.sh
 rm /usr/local/bin/uninstall-pve-cert-copy.sh
 EOF
 
@@ -57,4 +47,4 @@ chmod +x /usr/local/bin/pve-cert-copy.sh
 chmod +x /usr/local/bin/uninstall-pve-cert-copy.sh
 
 systemctl daemon-reload
-systemctl enable --now pve-cert-copy.timer 2>/dev/null
+systemctl enable --now pve-cert-copy.service
