@@ -4,7 +4,7 @@
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ioqy/pve-cert-copy/master/install.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/ioqy/pve-cert-copy/master/install.sh | sh
 ```
 
 ## Uninstall
