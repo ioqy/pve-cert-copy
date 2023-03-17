@@ -28,7 +28,7 @@ cat << EOF > /etc/systemd/system/pve-cert-copy.path
 [Unit]
 Description=Copy PVE certificate for proxmox backup server
 [Path]
-PathChanged=/etc/pve/nodes/pm/pve-ssl.pem
+PathChanged=/etc/pve/nodes/pm/pveproxy-ssl.pem
 Unit=pve-cert-copy.service
 [Install]
 WantedBy=multi-user.target
