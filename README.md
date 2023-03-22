@@ -1,4 +1,4 @@
-# A systemd timer to automatically copy the SSL certificate from Proxmox Virtual Environment to Proxmox Backup Server installed on the same machine
+# A systemd unit to automatically copy the SSL certificate from Proxmox Virtual Environment to Proxmox Backup Server installed on the same machine
 
 
 ## Install
@@ -10,5 +10,5 @@ curl -fsSL https://raw.githubusercontent.com/ioqy/pve-cert-copy/master/install.s
 ## Uninstall
 
 ```bash
-sudo /usr/local/bin/uninstall-pve-cert-copy.sh
+/usr/local/bin/uninstall-pve-cert-copy.sh
 ```
