@@ -27,7 +27,7 @@ ExecStartPost=-/usr/local/bin/pve-cert-copy.sh
 EOF
 
 cat << EOF > /usr/local/bin/uninstall-pve-cert-copy.sh
-#!/bin/sh
+#!/usr/bin/env sh
 if [ "\$(whoami)" != "root" ]; then
   echo Script must be run as root
   exit 1
